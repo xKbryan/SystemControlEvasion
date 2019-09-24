@@ -1,0 +1,768 @@
+#:import Factory kivy.factory.Factory
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+### Controlador de Telas ###
+<Gerenciador>
+	###transition: FadeTransition()
+	Menu:
+		name: 'menu'
+	Tarefas:
+		name: 'tarefas'
+	Cadastro:
+		name: 'cadastro'
+	RecoverPass:
+		name: 'recoverpass'
+	Painel:
+		name: 'painel'
+	ConsultarMatricula:
+		name: 'consultarMatricula'
+	TrancarMatricula:
+		name: 'trancarMatricula'
+	AutenticacaoSeguranca:
+		name: 'autenticacaoSeguranca'
+	Historico:
+		name: 'historico'
+	Horario:
+		name: 'horario'
+	Notas:
+		name: 'notas'
+	Faltas:
+		name: 'faltas'
+
+### Classes Dinamicas ###
+<BtnCntrlVsn@Button>:
+	background_color: 255, 255, 255, 1
+	bold: True
+	color: 0, 0, 0, 1
+
+<LbLBlck@Label>:
+	background_color: 0, 0, 0, 0
+	bold: True
+
+<LbLDcpln@Label>:
+	background_color: 0, 0, 0, 0
+	bold: True
+	size_hint: None, None
+	size: self.texture_size
+
+<BgColor@Widget>:
+	background_color: 1, 1, 1, 1
+	canvas.before:
+		Color:
+			rgba: root.background_color
+		Rectangle:
+			size: self.size
+			pos: self.pos
+
+<AccrdnTm@AccordionItem>:
+	background_normal: 'LblNrm.png'
+	background_selected: 'LblSlctd.png'
+
+<LbLCntrlVsn@Label+BgColor>:
+	background_color: 1, 1, 1, 1
+	color: 0, 0, 0, 1
+
+<LbLCntrlVsnNts@Label>:
+	size_hint: None, None
+
+<TxtNpt@TextInput>:
+	multiline: False
+	write_tab: False
+    background_color: 0, 0, 0, 0
+    cursor_color: 1, 1, 1, 1
+    foreground_color: 1, 1, 1, 1
+
+<Chck@CheckBox>:
+	group: 'g2'
+	size_hint: (None, 1)
+
+<BxLyt@BoxLayout>:
+	orientation:'vertical'
+	padding: 50
+	spacing: 10
+
+<Img@Image>:
+	source: 'edu-icon.png'
+	size_hint_y: None
+	height: 200
+	allow_stretch: True
+
+<Img2@Image>:
+	source: 'icon.png'
+	size_hint_y: None
+
+<BxLytPpP@BoxLayout>:
+	orientation: 'vertical'
+	padding: 5, 5, 5, 5
+<LblBxLytPpP@Label>:
+	color: 1, 1, 1, 1
+	center_x: root.center_x
+	center_y: root.center_y
+<BxLytPpP2@BoxLayout>:
+	size_hint: 1, 0.6
+<BtnPpP@Button>:
+	background_color: 0.4, 0.4, 0.4, 0.1
+	text: 'Voltar'
+
+<PpP@Popup>:
+	title: 'Encaminhando e-mail'
+	title_color: 1, 1, 1, 1
+	auto_dismiss: False
+	size: 500, 200
+	size_hint: None, None
+	###background: 'atlas://data/images/defaulttheme/button_disabled'
+	separator_color: 0.4, 0.4, 0.4, 1
+	title_align: 'center'
+
+<AtnSgr@PpP>:
+	BxLytPpP:
+		LblBxLytPpP:
+			text: 'Setor Administrativo estrara em contato assim que possivel'
+		BxLytPpP2:
+			BtnPpP:
+				on_press: root.dismiss()
+				on_release: app.root.current = 'menu'
+
+<CdstrUser@PpP>:
+	BxLytPpP:
+	    LblBxLytPpP:
+	        text: 'Encaminhando e-mail para confirmar o cadastro'
+	    BxLytPpP2:
+			BtnPpP:
+				on_press: root.dismiss()
+				on_release: app.root.current = 'menu'
+
+<RcvrPass@PpP>:
+	BxLytPpP:
+	    LblBxLytPpP:
+	        text: 'Encaminhando E-Mail para redefinir sua senha'
+	    BxLytPpP2:
+			BtnPpP:
+				on_press: root.dismiss()
+				on_release: app.root.current = 'menu'
+
+<CnclrMatricula@PpP>
+	title: 'Cancelamento de Matricula'
+	BxLytPpP:
+	    LblBxLytPpP:
+	        text: 'Sem autoridade. Encaminhe para um coordenador'
+	    BxLytPpP2:
+			BtnPpP:
+				on_release: root.dismiss()
+
+<GrrRelatorio@PpP>
+	title: 'Gerando Relatorio'
+	BxLytPpP:
+	    LblBxLytPpP:
+	        text: 'Encaminhando um e-mail do relatorio'
+	    BxLytPpP2:
+			BtnPpP:
+				on_release: root.dismiss()
+
+<TrncrMatriculaSim@PpP>
+	title: 'Trancar Matricula'
+	BxLytPpP:
+	    LblBxLytPpP:
+	        text: 'Matricula Trancada'
+	    BxLytPpP2:
+			BtnPpP:
+				on_release: root.dismiss()
+
+<TrncrMatricula@PpP>
+	title: 'Trancar Matricula'
+	BxLytPpP:
+	    LblBxLytPpP:
+	        text: 'Confirmar a tranca da matricula'
+	    BxLytPpP2:
+			BtnPpP:
+				text: 'Nao'
+				on_release: root.dismiss()
+			BtnPpP:
+				text: 'Sim'
+				on_press: root.dismiss()
+				on_release: app.root.current = 'trancarMatricula'
+				###on_release: Factory.TrncrMatriculaSim().open()
+
+### Telas ###
+<Menu>:
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView:
+				use_separator: True
+				ActionPrevious:
+					title: 'Menu'
+					with_previous: False
+		Img:
+		BxLyt:
+			Label:
+				text: 'Login'
+			TxtNpt:
+				id: email
+				hint_text: 'E-Mail'
+			TxtNpt:
+				id: senha
+				hint_text: 'Senha'
+				password: True
+			BtnCntrlVsn:
+				text: 'ENTRAR'
+				on_release: root.entrar('0x000002145DA44458', 13) ; root.manager.transition.direction = 'left'
+			Button:
+	        	background_color: (0, 0, 0, 0)
+	        	color: (1, 1, 1, 1)
+				text: 'Esqueceu sua senha? Clique AQUI!'
+				on_release: app.root.current = 'recoverpass'; root.manager.transition.direction = 'left'
+			Button:
+	        	background_color: (0, 0, 0, 0)
+	        	color: (.5, .9, .5, 1)
+				text: 'Novo Usuario'
+				on_release: app.root.current = 'cadastro'; root.manager.transition.direction = 'left'
+
+<TrancarMatricula>
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Trancar Matricula'
+					on_release: app.root.current = 'painel'; root.manager.transition.direction = 'right'
+		Img:
+		BxLyt:
+			GridLayout:
+				cols: 2
+				Chck:
+				Label: 
+					text: 'Insatisfacao com o curso'
+				Chck:
+				Label:
+					text: 'Estagnacao do metodo de ensino'
+				Chck:
+				Label:
+					text: 'Baixa qualidade do ensino medio'
+				Chck:
+				Label:
+					text: 'Motivos pessoais'
+				Chck:
+					active: True
+				TxtNpt:
+					hint_text: 'Outros. Especifique'
+					halign: 'center'
+		BtnCntrlVsn:
+			size_hint_y: .2
+			text: 'Proximo'
+			on_release: app.root.current = 'autenticacaoSeguranca'; root.manager.transition.direction = 'left'
+
+<Painel>:
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Painel'
+					on_release: app.root.current = 'menu'; root.manager.transition.direction = 'right'
+		Img:
+		BxLyt:
+			BtnCntrlVsn:
+				text: 'Consultar Matricula'
+				on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'left'
+			BtnCntrlVsn:
+				text: 'Gerar Relatorio'
+				on_release: Factory.GrrRelatorio().open(); root.manager.transition.direction = 'left'
+			BtnCntrlVsn:
+				text: 'Trancar Matricula'
+				on_release: Factory.TrncrMatricula().open(); root.manager.transition.direction = 'left'
+			BtnCntrlVsn:
+				text: 'Cancelar Matricula'
+				on_release: Factory.CnclrMatricula().open(); root.manager.transition.direction = 'left'
+
+<ConsultarMatricula>:
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Matricula'
+					on_release: app.root.current = 'painel'; root.manager.transition.direction = 'right'
+		Img:
+		BxLyt:
+			BtnCntrlVsn:
+				text: 'Historico'
+				on_release: app.root.current = 'historico'; root.manager.transition.direction = 'left'
+			BtnCntrlVsn:
+				text: 'Horario'
+				on_release: app.root.current = 'horario'; root.manager.transition.direction = 'left'
+			BtnCntrlVsn:
+				text: 'Notas Parciais'
+				on_release: app.root.current = 'notas'; root.manager.transition.direction = 'left'
+			BtnCntrlVsn:
+				text: 'Faltas Parciais'
+				on_release: app.root.current = 'faltas'; root.manager.transition.direction = 'left'
+
+<Historico>:
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Historico'
+					on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'right'
+		BxLyt:
+			Img2:
+			Accordion:
+				orientation: 'vertical'
+				AccrdnTm:
+					collapse: False
+					title: 'Engenharia de Software'
+					LbLCntrlVsn:
+						text: 'v'
+						color: 0, 1, 0, 1
+					LbLCntrlVsn:
+						text: '8.0'
+					LbLCntrlVsn:
+						text: '100%'
+					LbLCntrlVsn:
+						text: 'A'
+				AccrdnTm:
+					title: 'Interface Humano Computador'
+					LbLCntrlVsn:
+						text: 'v'
+						color: 0, 1, 0, 1
+					LbLCntrlVsn:
+						text: '9.0'
+					LbLCntrlVsn:
+						text: '100%'
+					LbLCntrlVsn:
+						text: 'A'
+				AccrdnTm:
+					title: 'Redes de Computadores'
+					LbLCntrlVsn:
+						text: 'v'
+						color: 0, 1, 0, 1
+					LbLCntrlVsn:
+						text: '8.0'
+					LbLCntrlVsn:
+						text: '100%'
+					LbLCntrlVsn:
+						text: 'A'
+				AccrdnTm:
+					title: 'Sistemas Operacionais'
+					LbLCntrlVsn:
+						text: 'v'
+						color: 0, 1, 0, 1
+					LbLCntrlVsn:
+						text: '9.0'
+					LbLCntrlVsn:
+						text: '100%'
+					LbLCntrlVsn:
+						text: 'A'
+				AccrdnTm:
+					title: 'Ingles III'
+					LbLCntrlVsn:
+						text: 'v'
+						color: 0, 1, 0, 1
+					LbLCntrlVsn:
+						text: '8.0'
+					LbLCntrlVsn:
+						text: '100%'
+					LbLCntrlVsn:
+						text: 'A'
+				AccrdnTm:
+					title: 'Estrutura de Dados'
+					LbLCntrlVsn:
+						text: 'v'
+						color: 0, 1, 0, 1
+					LbLCntrlVsn:
+						text: '9.0'
+					LbLCntrlVsn:
+						text: '100%'
+					LbLCntrlVsn:
+						text: 'A'
+				AccrdnTm:
+					title: 'Banco de Dados'
+					LbLCntrlVsn:
+						text: 'v'
+						color: 0, 1, 0, 1
+					LbLCntrlVsn:
+						text: '9.0'
+					LbLCntrlVsn:
+						text: '100%'
+					LbLCntrlVsn:
+						text: 'A'
+
+<Horario>
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Horario'
+					on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'right'
+		BxLyt:
+			Img2:
+			Accordion:
+				orientation: 'vertical'
+				AccordionItem:
+					title: 'Engenharia de Software'
+					LbLCntrlVsn:
+						text: '7:45'
+					LbLCntrlVsn:
+						text: '11:15'
+					LbLCntrlVsn:
+						text: 'Segunda'
+					LbLCntrlVsn:
+						text: 'A'
+				AccordionItem:
+					title: 'Interface Humano Computador'
+					LbLCntrlVsn:
+						text: '11:15'
+					LbLCntrlVsn:
+						text: '12:55'
+					LbLCntrlVsn:
+						text: 'Segunda'
+					LbLCntrlVsn:
+						text: 'A'
+				AccordionItem:
+					title: 'Redes de Computadores'
+					LbLCntrlVsn:
+						text: '9:35'
+					LbLCntrlVsn:
+						text: '12:55'
+					LbLCntrlVsn:
+						text: 'Terca'
+					LbLCntrlVsn:
+						text: 'A'
+				AccordionItem:
+					title: 'Sistemas Operacionais'
+					LbLCntrlVsn:
+						text: 'N/D'
+					LbLCntrlVsn:
+						text: 'N/D'
+					LbLCntrlVsn:
+						text: 'Quarta'
+					LbLCntrlVsn:
+						text: 'A'
+				AccordionItem:
+					title: 'Ingles III'
+					LbLCntrlVsn:
+						text: '9:35'
+					LbLCntrlVsn:
+						text: '12:55'
+					LbLCntrlVsn:
+						text: 'Quinta'
+					LbLCntrlVsn:
+						text: 'A'
+				AccordionItem:
+					title: 'Estrutura de Dados'
+					LbLCntrlVsn:
+						text: '9:35'
+					LbLCntrlVsn:
+						text: '12:55'
+					LbLCntrlVsn:
+						text: 'Quinta'
+					LbLCntrlVsn:
+						text: 'A'
+				AccordionItem:
+					title: 'Banco de Dados'
+					LbLCntrlVsn:
+						text: '7:45'
+					LbLCntrlVsn:
+						text: '11:15'
+					LbLCntrlVsn:
+						text: 'Sexta'
+					LbLCntrlVsn:
+						text: 'A'
+
+<Notas>
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Notas'
+					on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'right'
+		BxLyt:
+			Img2:
+			Accordion:
+				AccordionItem:
+					title: 'Engenharia de Software'
+					GridLayout:
+						cols: 2
+						LbLBlck:
+							text: 'Prova 1'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck:
+							text: 'Prova 2'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck:
+							text: 'Prova 3'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck:
+							text: 'Trabalho Final'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck:
+							text: 'Media Final'
+						LbLCntrlVsnNts:
+							text: '10'
+				AccordionItem:
+					title: 'Interface Humano Computador'
+					GridLayout:
+						cols: 2
+						LbLBlck
+							text: 'Prova 1'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 2'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 3'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Trabalho Final'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Media Final'
+						LbLCntrlVsnNts:
+							text: '10'
+				AccordionItem:
+					title: 'Engenharia de Software'
+					GridLayout:
+						cols: 2
+						LbLBlck
+							text: 'Prova 1'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 2'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 3'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Trabalho Final'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Media Final'
+						LbLCntrlVsnNts:
+							text: '10'
+				AccordionItem:
+					title: 'Interface Humano Computador'
+					GridLayout:
+						cols: 2
+						LbLBlck
+							text: 'Prova 1'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 2'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 3'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Trabalho Final'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Media Final'
+						LbLCntrlVsnNts:
+							text: '10'
+				AccordionItem:
+					title: 'Engenharia de Software'
+					GridLayout:
+						cols: 2
+						LbLBlck
+							text: 'Prova 1'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 2'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 3'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Trabalho Final'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Media Final'
+						LbLCntrlVsnNts:
+							text: '10'
+				AccordionItem:
+					title: 'Interface Humano Computador'
+					GridLayout:
+						cols: 2
+						LbLBlck
+							text: 'Prova 1'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 2'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Prova 3'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Trabalho Final'
+						LbLCntrlVsnNts:
+							text: '10'
+						LbLBlck
+							text: 'Media Final'
+						LbLCntrlVsnNts:
+							text: '10'
+
+<Faltas>
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Faltas'
+					on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'right'
+		BxLyt:
+			Img2:
+			GridLayout:
+				cols: 3
+				LbLBlck:
+					text: 'Sigla'
+				LbLBlck:
+					text: 'Presencas'
+				LbLBlck:
+					text: 'Ausencias'
+				LbLDcpln:
+					text: 'Engenharia de Software'
+				LbLCntrlVsn:
+					text: '24'
+				LbLCntrlVsn:
+					text: '0'
+				LbLDcpln:
+					text: 'Banco de Dados'
+				LbLCntrlVsn:
+					text: '20'
+				LbLCntrlVsn:
+					text: '0'
+				LbLDcpln:
+					text: 'Interface Humano Computador'
+				LbLCntrlVsn:
+					text: '18'
+				LbLCntrlVsn:
+					text: '4'
+				LbLDcpln:
+					text: 'Redes de Computadores'
+				LbLCntrlVsn:
+					text: '12'
+				LbLCntrlVsn:
+					text: '4'
+				LbLDcpln:
+					text: 'Estrutura de Dados'
+				LbLCntrlVsn:
+					text: '18'
+				LbLCntrlVsn:
+					text: '0'
+				LbLDcpln:
+					text: 'Ingles III'
+				LbLCntrlVsn:
+					text: '12'
+				LbLCntrlVsn:
+					text: '0'
+				LbLDcpln:
+					text: 'Sistemas Operacionais'
+				LbLCntrlVsn:
+					text: '0'
+				LbLCntrlVsn:
+					text: '0'
+
+<AutenticacaoSeguranca>:
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView:
+				ActionPrevious:
+					title: 'Autenticacao de Seguranca'
+					on_release: app.root.current = 'trancarMatricula'; root.manager.transition.direction = 'right'
+		Img:
+		BxLyt:
+			Label:
+				text: 'Autenticacao de Seguranca'
+			TxtNpt:
+				id: email
+				hint_text: 'E-Mail'
+				size_hint_y: .4
+			TxtNpt:
+				id: senha
+				hint_text: 'Senha'
+				password: True
+				size_hint_y: .4
+			BtnCntrlVsn:
+				text: 'Confirmar'
+				size_hint_y: .4
+				on_release: Factory.AtnSgr().open(); root.ids.email.text = root.ids.senha.text = ''; root.manager.transition.direction = 'left'
+
+<RecoverPass>:
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Recuperar Senha'
+					on_release: app.root.current = 'menu'; root.manager.transition.direction = 'right'
+		Img:
+		BxLyt:
+			Label:
+				text: 'Recuperar Senha'
+				text_size: self.size
+				halign: 'center'
+				valign: 'top'
+			TxtNpt:
+				id: email
+				hint_text: 'E-Mail'
+	        	size_hint_y: .4
+			BtnCntrlVsn:
+				text: 'Recuperar Senha'
+				size_hint_y: .4
+				on_release: Factory.RcvrPass().open(); root.ids.email.text = ''; root.manager.transition.direction = 'left'
+
+<Cadastro>:
+	BoxLayout:
+		orientation: 'vertical'
+		ActionBar:
+			ActionView: 
+				ActionPrevious: 
+					title: 'Cadastro'
+					on_release: app.root.current = 'menu'; root.manager.transition.direction = 'right'	
+		Img:
+		BxLyt:
+			TxtNpt:
+				id: cpf
+				hint_text: 'CPF'
+			TxtNpt:
+				id: email
+				hint_text: 'E-mail'
+			TxtNpt:
+				id: senha
+				hint_text: 'Senha'
+				password: True
+			TxtNpt:
+				id: confsenha
+				hint_text: 'Confirmar senha'
+				password: True
+			BtnCntrlVsn:
+				text: 'Confirmar Cadastro'
+	        	on_release: Factory.CdstrUser().open(); root.ids.cpf.text = root.ids.email.text =  root.ids.senha.text = root.ids.confsenha.text = ''; root.manager.transition.direction = 'left'
