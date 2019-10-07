@@ -6,8 +6,6 @@
 	###transition: FadeTransition()
 	Menu:
 		name: 'menu'
-	Tarefas:
-		name: 'tarefas'
 	Cadastro:
 		name: 'cadastro'
 	RecoverPass:
@@ -29,7 +27,7 @@
 	Faltas:
 		name: 'faltas'
 
-### Classes Dinamicas ###
+### Classes Dinaamicas ###
 <BtnCntrlVsn@Button>:
 	background_color: 255, 255, 255, 1
 	bold: True
@@ -38,12 +36,6 @@
 <LbLBlck@Label>:
 	background_color: 0, 0, 0, 0
 	bold: True
-
-<LbLDcpln@Label>:
-	background_color: 0, 0, 0, 0
-	bold: True
-	size_hint: None, None
-	size: self.texture_size
 
 <BgColor@Widget>:
 	background_color: 1, 1, 1, 1
@@ -61,9 +53,6 @@
 <LbLCntrlVsn@Label+BgColor>:
 	background_color: 1, 1, 1, 1
 	color: 0, 0, 0, 1
-
-<LbLCntrlVsnNts@Label>:
-	size_hint: None, None
 
 <TxtNpt@TextInput>:
 	multiline: False
@@ -83,13 +72,15 @@
 
 <Img@Image>:
 	source: 'edu-icon.png'
-	size_hint_y: None
-	height: 200
+	size_hint: (.4, .4)
+	pos_hint: {'center_x': .5, 'center_y': .5}
 	allow_stretch: True
 
 <Img2@Image>:
 	source: 'icon.png'
-	size_hint_y: None
+	size_hint: (.1, .1)
+	pos_hint: {'center_x': .5, 'center_y': .5}
+
 
 <BxLytPpP@BoxLayout>:
 	orientation: 'vertical'
@@ -159,15 +150,6 @@
 			BtnPpP:
 				on_release: root.dismiss()
 
-<TrncrMatriculaSim@PpP>
-	title: 'Trancar Matricula'
-	BxLytPpP:
-	    LblBxLytPpP:
-	        text: 'Matricula Trancada'
-	    BxLytPpP2:
-			BtnPpP:
-				on_release: root.dismiss()
-
 <TrncrMatricula@PpP>
 	title: 'Trancar Matricula'
 	BxLytPpP:
@@ -181,7 +163,6 @@
 				text: 'Sim'
 				on_press: root.dismiss()
 				on_release: app.root.current = 'trancarMatricula'
-				###on_release: Factory.TrncrMatriculaSim().open()
 
 ### Telas ###
 <Menu>:
@@ -306,88 +287,92 @@
 				ActionPrevious: 
 					title: 'Historico'
 					on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'right'
+		Img2:
 		BxLyt:
-			Img2:
-			Accordion:
-				orientation: 'vertical'
-				AccrdnTm:
-					collapse: False
-					title: 'Engenharia de Software'
-					LbLCntrlVsn:
-						text: 'v'
-						color: 0, 1, 0, 1
-					LbLCntrlVsn:
-						text: '8.0'
-					LbLCntrlVsn:
-						text: '100%'
-					LbLCntrlVsn:
-						text: 'A'
-				AccrdnTm:
-					title: 'Interface Humano Computador'
-					LbLCntrlVsn:
-						text: 'v'
-						color: 0, 1, 0, 1
-					LbLCntrlVsn:
-						text: '9.0'
-					LbLCntrlVsn:
-						text: '100%'
-					LbLCntrlVsn:
-						text: 'A'
-				AccrdnTm:
-					title: 'Redes de Computadores'
-					LbLCntrlVsn:
-						text: 'v'
-						color: 0, 1, 0, 1
-					LbLCntrlVsn:
-						text: '8.0'
-					LbLCntrlVsn:
-						text: '100%'
-					LbLCntrlVsn:
-						text: 'A'
-				AccrdnTm:
-					title: 'Sistemas Operacionais'
-					LbLCntrlVsn:
-						text: 'v'
-						color: 0, 1, 0, 1
-					LbLCntrlVsn:
-						text: '9.0'
-					LbLCntrlVsn:
-						text: '100%'
-					LbLCntrlVsn:
-						text: 'A'
-				AccrdnTm:
-					title: 'Ingles III'
-					LbLCntrlVsn:
-						text: 'v'
-						color: 0, 1, 0, 1
-					LbLCntrlVsn:
-						text: '8.0'
-					LbLCntrlVsn:
-						text: '100%'
-					LbLCntrlVsn:
-						text: 'A'
-				AccrdnTm:
-					title: 'Estrutura de Dados'
-					LbLCntrlVsn:
-						text: 'v'
-						color: 0, 1, 0, 1
-					LbLCntrlVsn:
-						text: '9.0'
-					LbLCntrlVsn:
-						text: '100%'
-					LbLCntrlVsn:
-						text: 'A'
-				AccrdnTm:
-					title: 'Banco de Dados'
-					LbLCntrlVsn:
-						text: 'v'
-						color: 0, 1, 0, 1
-					LbLCntrlVsn:
-						text: '9.0'
-					LbLCntrlVsn:
-						text: '100%'
-					LbLCntrlVsn:
-						text: 'A'
+		    ScrollView:
+		        Accordion:
+		            height: 500
+		            orientation: 'vertical'
+		            size_hint_y: None
+					pos_hint: {'center_x': .5, 'center_y': .5}
+					AccordionItem:
+						collapse: False
+						title: 'Engenharia de Software 2'
+						LbLCntrlVsn:
+							text: 'v'
+							color: 0, 1, 0, 1
+						LbLCntrlVsn:
+							text: '8.0'
+						LbLCntrlVsn:
+							text: '100%'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Interacao Humano Computador'
+						LbLCntrlVsn:
+							text: 'v'
+							color: 0, 1, 0, 1
+						LbLCntrlVsn:
+							text: '9.0'
+						LbLCntrlVsn:
+							text: '100%'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Redes de Computadores'
+						LbLCntrlVsn:
+							text: 'v'
+							color: 0, 1, 0, 1
+						LbLCntrlVsn:
+							text: '7.0'
+						LbLCntrlVsn:
+							text: '100%'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Sistemas Operacionais'
+						LbLCntrlVsn:
+							text: 'x'
+							color: 1, 0, 0, 1
+						LbLCntrlVsn:
+							text: '6.0'
+						LbLCntrlVsn:
+							text: '55%'
+						LbLCntrlVsn:
+							text: 'B'
+					AccordionItem:
+						title: 'Ingles III'
+						LbLCntrlVsn:
+							text: 'v'
+							color: 0, 1, 0, 1
+						LbLCntrlVsn:
+							text: '10.0'
+						LbLCntrlVsn:
+							text: '100%'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Estrutura de Dados'
+						LbLCntrlVsn:
+							text: 'v'
+							color: 0, 1, 0, 1
+						LbLCntrlVsn:
+							text: '7.5'
+						LbLCntrlVsn:
+							text: '90%'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Banco de Dados'
+						LbLCntrlVsn:
+							text: 'v'
+							color: 0, 1, 0, 1
+						LbLCntrlVsn:
+							text: '9.5'
+						LbLCntrlVsn:
+							text: '100%'
+						LbLCntrlVsn:
+							text: 'A'
 
 <Horario>
 	BoxLayout:
@@ -397,80 +382,84 @@
 				ActionPrevious: 
 					title: 'Horario'
 					on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'right'
+		Img2:
 		BxLyt:
-			Img2:
-			Accordion:
-				orientation: 'vertical'
-				AccordionItem:
-					title: 'Engenharia de Software'
-					LbLCntrlVsn:
-						text: '7:45'
-					LbLCntrlVsn:
-						text: '11:15'
-					LbLCntrlVsn:
-						text: 'Segunda'
-					LbLCntrlVsn:
-						text: 'A'
-				AccordionItem:
-					title: 'Interface Humano Computador'
-					LbLCntrlVsn:
-						text: '11:15'
-					LbLCntrlVsn:
-						text: '12:55'
-					LbLCntrlVsn:
-						text: 'Segunda'
-					LbLCntrlVsn:
-						text: 'A'
-				AccordionItem:
-					title: 'Redes de Computadores'
-					LbLCntrlVsn:
-						text: '9:35'
-					LbLCntrlVsn:
-						text: '12:55'
-					LbLCntrlVsn:
-						text: 'Terca'
-					LbLCntrlVsn:
-						text: 'A'
-				AccordionItem:
-					title: 'Sistemas Operacionais'
-					LbLCntrlVsn:
-						text: 'N/D'
-					LbLCntrlVsn:
-						text: 'N/D'
-					LbLCntrlVsn:
-						text: 'Quarta'
-					LbLCntrlVsn:
-						text: 'A'
-				AccordionItem:
-					title: 'Ingles III'
-					LbLCntrlVsn:
-						text: '9:35'
-					LbLCntrlVsn:
-						text: '12:55'
-					LbLCntrlVsn:
-						text: 'Quinta'
-					LbLCntrlVsn:
-						text: 'A'
-				AccordionItem:
-					title: 'Estrutura de Dados'
-					LbLCntrlVsn:
-						text: '9:35'
-					LbLCntrlVsn:
-						text: '12:55'
-					LbLCntrlVsn:
-						text: 'Quinta'
-					LbLCntrlVsn:
-						text: 'A'
-				AccordionItem:
-					title: 'Banco de Dados'
-					LbLCntrlVsn:
-						text: '7:45'
-					LbLCntrlVsn:
-						text: '11:15'
-					LbLCntrlVsn:
-						text: 'Sexta'
-					LbLCntrlVsn:
-						text: 'A'
+		    ScrollView:
+		        Accordion:
+		            height: 500
+		            orientation: 'vertical'
+					pos_hint: {'center_x': .5, 'center_y': .5}
+		            size_hint_y: None
+					AccordionItem:
+						title: 'Engenharia de Software 2'
+						LbLCntrlVsn:
+							text: '7:45'
+						LbLCntrlVsn:
+							text: '11:15'
+						LbLCntrlVsn:
+							text: 'Segunda'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Interacao Humano Computador'
+						LbLCntrlVsn:
+							text: '11:15'
+						LbLCntrlVsn:
+							text: '12:55'
+						LbLCntrlVsn:
+							text: 'Segunda'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Redes de Computadores'
+						LbLCntrlVsn:
+							text: '9:35'
+						LbLCntrlVsn:
+							text: '12:55'
+						LbLCntrlVsn:
+							text: 'Terca'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Sistemas Operacionais'
+						LbLCntrlVsn:
+							text: '7:45'
+						LbLCntrlVsn:
+							text: '11:15'
+						LbLCntrlVsn:
+							text: 'Quarta'
+						LbLCntrlVsn:
+							text: 'B'
+					AccordionItem:
+						title: 'Ingles III'
+						LbLCntrlVsn:
+							text: '9:35'
+						LbLCntrlVsn:
+							text: '12:55'
+						LbLCntrlVsn:
+							text: 'Quinta'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Estrutura de Dados'
+						LbLCntrlVsn:
+							text: '9:35'
+						LbLCntrlVsn:
+							text: '12:55'
+						LbLCntrlVsn:
+							text: 'Quinta'
+						LbLCntrlVsn:
+							text: 'A'
+					AccordionItem:
+						title: 'Banco de Dados'
+						LbLCntrlVsn:
+							text: '7:45'
+						LbLCntrlVsn:
+							text: '11:15'
+						LbLCntrlVsn:
+							text: 'Sexta'
+						LbLCntrlVsn:
+							text: 'A'
 
 <Notas>
 	BoxLayout:
@@ -480,153 +469,186 @@
 				ActionPrevious: 
 					title: 'Notas'
 					on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'right'
+				ActionButton:
+					text:'Atualizar'
+					on_release: app.notas.addWidget()
+		Img2:
 		BxLyt:
-			Img2:
-			Accordion:
+	        Accordion:
+	        	id: acc
+	            width: 600
+	            height: 400
+	            size_hint: None, None
+				pos_hint: {'center_x': .5, 'center_y': .5}
+				content_size: 500
 				AccordionItem:
 					title: 'Engenharia de Software'
 					GridLayout:
 						cols: 2
-						LbLBlck:
+						Label:
 							text: 'Prova 1'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck:
+						LbLCntrlVsn:
+							text: '7'
+						Label:
 							text: 'Prova 2'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck:
+						LbLCntrlVsn:
+							text: '9'
+						Label:
 							text: 'Prova 3'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck:
+						LbLCntrlVsn:
+							text: '-'
+						Label:
 							text: 'Trabalho Final'
-						LbLCntrlVsnNts:
+						LbLCntrlVsn:
 							text: '10'
-						LbLBlck:
+						Label:
 							text: 'Media Final'
-						LbLCntrlVsnNts:
-							text: '10'
+						LbLCntrlVsn:
+							text: '8'
 				AccordionItem:
-					title: 'Interface Humano Computador'
+					title: 'Interacao Humano Computador'
 					GridLayout:
 						cols: 2
-						LbLBlck
+						Label:
 							text: 'Prova 1'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '9'
+						Label:
 							text: 'Prova 2'
-						LbLCntrlVsnNts:
+						LbLCntrlVsn:
 							text: '10'
-						LbLBlck
+						Label:
 							text: 'Prova 3'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '8'
+						Label:
 							text: 'Trabalho Final'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '7'
+						Label:
 							text: 'Media Final'
-						LbLCntrlVsnNts:
-							text: '10'
+						LbLCntrlVsn:
+							text: '9'
 				AccordionItem:
-					title: 'Engenharia de Software'
+					title: 'Redes de Computadores'
 					GridLayout:
 						cols: 2
-						LbLBlck
+						Label:
 							text: 'Prova 1'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '7'
+						Label:
 							text: 'Prova 2'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '5'
+						Label:
 							text: 'Prova 3'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '9'
+						Label:
 							text: 'Trabalho Final'
-						LbLCntrlVsnNts:
+						LbLCntrlVsn:
 							text: '10'
-						LbLBlck
+						Label:
 							text: 'Media Final'
-						LbLCntrlVsnNts:
-							text: '10'
+						LbLCntrlVsn:
+							text: '7'
 				AccordionItem:
-					title: 'Interface Humano Computador'
+					title: 'Sistemas Operacionais'
 					GridLayout:
 						cols: 2
-						LbLBlck
+						Label:
 							text: 'Prova 1'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '6'
+						Label:
 							text: 'Prova 2'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '5'
+						Label:
 							text: 'Prova 3'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '9'
+						Label:
 							text: 'Trabalho Final'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '7'
+						Label:
 							text: 'Media Final'
-						LbLCntrlVsnNts:
-							text: '10'
+						LbLCntrlVsn:
+							text: '6'
 				AccordionItem:
-					title: 'Engenharia de Software'
+					title: 'Ingles III'
 					GridLayout:
 						cols: 2
-						LbLBlck
+						Label:
 							text: 'Prova 1'
-						LbLCntrlVsnNts:
+						LbLCntrlVsn:
 							text: '10'
-						LbLBlck
+						Label:
 							text: 'Prova 2'
-						LbLCntrlVsnNts:
+						LbLCntrlVsn:
 							text: '10'
-						LbLBlck
+						Label:
 							text: 'Prova 3'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '-'
+						Label:
 							text: 'Trabalho Final'
-						LbLCntrlVsnNts:
+						LbLCntrlVsn:
 							text: '10'
-						LbLBlck
+						Label:
 							text: 'Media Final'
-						LbLCntrlVsnNts:
+						LbLCntrlVsn:
 							text: '10'
 				AccordionItem:
-					title: 'Interface Humano Computador'
+					title: 'Estrutura de Dados'
 					GridLayout:
 						cols: 2
-						LbLBlck
+						Label:
 							text: 'Prova 1'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '7'
+						Label:
 							text: 'Prova 2'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '8'
+						Label:
 							text: 'Prova 3'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '-'
+						Label:
 							text: 'Trabalho Final'
-						LbLCntrlVsnNts:
-							text: '10'
-						LbLBlck
+						LbLCntrlVsn:
+							text: '7.5'
+						Label:
 							text: 'Media Final'
-						LbLCntrlVsnNts:
+						LbLCntrlVsn:
+							text: '7.5'
+				AccordionItem:
+					title: 'Banco de Dados'
+					GridLayout:
+						cols: 2
+						Label:
+							text: 'Prova 1'
+						LbLCntrlVsn:
 							text: '10'
+						Label:
+							text: 'Prova 2'
+						LbLCntrlVsn:
+							text: '8'
+						Label:
+							text: 'Prova 3'
+						LbLCntrlVsn:
+							text: '9'
+						Label:
+							text: 'Trabalho Final'
+						LbLCntrlVsn:
+							text: '9'
+						Label:
+							text: 'Media Final'
+						LbLCntrlVsn:
+							text: '9.5'
 
 <Faltas>
 	BoxLayout:
@@ -636,56 +658,56 @@
 				ActionPrevious: 
 					title: 'Faltas'
 					on_release: app.root.current = 'consultarMatricula'; root.manager.transition.direction = 'right'
+		Img2:
 		BxLyt:
-			Img2:
 			GridLayout:
 				cols: 3
 				LbLBlck:
-					text: 'Sigla'
+					text: 'Disciplina'
 				LbLBlck:
 					text: 'Presencas'
 				LbLBlck:
 					text: 'Ausencias'
-				LbLDcpln:
-					text: 'Engenharia de Software'
+				Label:
+					text: 'Engenharia de Software 2'
 				LbLCntrlVsn:
 					text: '24'
 				LbLCntrlVsn:
 					text: '0'
-				LbLDcpln:
-					text: 'Banco de Dados'
+				Label:
+					text: 'Interacao Humano Computador'
+				LbLCntrlVsn:
+					text: '12'
+				LbLCntrlVsn:
+					text: '0'
+				Label:
+					text: 'Redes de Computadores'
 				LbLCntrlVsn:
 					text: '20'
 				LbLCntrlVsn:
 					text: '0'
-				LbLDcpln:
-					text: 'Interface Humano Computador'
+				Label:
+					text: 'Sistemas Operacionais'
 				LbLCntrlVsn:
-					text: '18'
+					text: '9'
 				LbLCntrlVsn:
-					text: '4'
-				LbLDcpln:
-					text: 'Redes de Computadores'
+					text: '8'
+				Label:
+					text: 'Ingles III'
 				LbLCntrlVsn:
-					text: '12'
+					text: '10'
 				LbLCntrlVsn:
-					text: '4'
-				LbLDcpln:
+					text: '0'
+				Label:
 					text: 'Estrutura de Dados'
 				LbLCntrlVsn:
 					text: '18'
 				LbLCntrlVsn:
-					text: '0'
-				LbLDcpln:
-					text: 'Ingles III'
+					text: '2'
+				Label:
+					text: 'Banco de Dados'
 				LbLCntrlVsn:
-					text: '12'
-				LbLCntrlVsn:
-					text: '0'
-				LbLDcpln:
-					text: 'Sistemas Operacionais'
-				LbLCntrlVsn:
-					text: '0'
+					text: '20'
 				LbLCntrlVsn:
 					text: '0'
 
