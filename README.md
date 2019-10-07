@@ -13,4 +13,5 @@ Intruções:
 
 
 Obs. Este programa ainda está em desenvolvimento. Apenas o front-end e a modelagem estão pronta.
+
 Obs2. Testado apenas no Windows 10
