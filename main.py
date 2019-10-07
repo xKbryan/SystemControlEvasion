@@ -93,9 +93,9 @@ class Menu(Screen):
 	def on_pre_leave(self):
 		Window.unbind(on_keyboard=self.entrar)
 
-class Test(App):
+class SystemControlEvasion(App):
 	def build(self):
-		# Builder.load_string(open('test.kv', encoding="utf-8").read(), rulesonly=True)
+		# Builder.load_string(open('systemcontrolevasion.kv', encoding="utf-8").read(), rulesonly=True)
 		return Gerenciador()
 
-Test().run()
+SystemControlEvasion().run()
