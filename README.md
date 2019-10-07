@@ -7,7 +7,7 @@ Sistema de Controle de Evasão
 2. Kivy (utilizando a versão 1.11.1) - https://kivy.org/#download
 
 
-## Intruções:
+## Instruções:
 1. Instale o Python em seu sistema operacional.
 2. Instale o Kivy: pip install Kivy
 3. Clone este git e execute: Python main.py
